@@ -2,7 +2,7 @@ SRCS = msg-counter.c set-hash.c
 OBJS = $(SRCS:%.c=%.o)
 CC = gcc
 PROG = msg-counter
-FILE = test.txt
+FILE = test3.txt
 
 CFLAGS = -Wall -Wextra -Wmissing-prototypes --pedantic -std=c99
 LDFLAGS = -lm

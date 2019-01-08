@@ -40,11 +40,13 @@ int main(int argc, char *argv[]){
     fpCopy = fopen(CopyName,"r");
     Set *s = setCreate(20);
     const char *USER_TAG = "<div class=\"_41ud\">\n";
+    const char *FALSE_MSG_TAG = "clearfix _o46 _3erg _29_7 direction_ltr text_align_ltr";
     const char *MSG_TAG1 = "<div class=";
     const char *MSG_TAG2 = "_aok";
     const char *MSG_TAG3 = " tabindex=";
     char c = '"';
     char buffer[BUFFER_SIZE];
+    char *token;
     char *username;
     int i=0;
     while(fgets(buffer, BUFFER_SIZE, fpCopy)){
@@ -57,9 +59,13 @@ int main(int argc, char *argv[]){
             username = strdup(strtok(NULL, &c));
             printf("%s\n", username);
 //            printf("%s\n", buffer);
-        }else if(strcmp(strtok(buffer, &c), MSG_TAG1) == 0 && strcmp(strtok(NULL, &c), MSG_TAG2) == 0 && strcmp(strtok(NULL, &c), MSG_TAG3) == 0){
-            setAdd(s, username);
-//            printf("added to %s \n", username);
+        }else if(strcmp(strtok(buffer, &c), MSG_TAG1) == 0){
+            token = strtok(NULL, &c);
+            if(strcmp(token, MSG_TAG2) == 0 &&
+                 strcmp(token,FALSE_MSG_TAG) !=0 && strcmp(strtok(NULL, &c), MSG_TAG3) == 0){
+                setAdd(s, username);
+                printf("added to %s \n", username);
+            }
         }
         i++;
     }

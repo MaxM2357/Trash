@@ -4,7 +4,7 @@
 #include "set.h"
 
 typedef struct Node_t {
-    char key[50];
+    char key[1000];
     unsigned int nbMsg;
     struct Node_t *next;
 } Node;
@@ -23,6 +23,7 @@ Set *setCreate(int size) {
     s -> array = calloc(size, sizeof(Node *));
     if (s -> array == NULL)
         exit(-1);
+    for(int i=0; i<size; i++) s->array[i]=NULL;
     s -> arraySize = size;
     s -> nKeys = 0;
     return s;
